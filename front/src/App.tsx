@@ -1,6 +1,12 @@
+import { BrowserRouter as Router } from "react-router-dom";
+import { RouterPrivate } from "./presentation/pages/private/private.routes";
+
 export function App() {
-  return <div className="">App</div>;
+  return (
+    <Router>
+      <RouterPrivate />
+    </Router>
+  );
 }
 
 export default App;
-// Hierarchy para nombrar rutas con jerarquias 
