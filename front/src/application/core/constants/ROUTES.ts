@@ -3,7 +3,7 @@ import { Graphics } from "src/presentation/pages/private/graphics";
 import { Ids } from "src/presentation/pages/private/ids";
 import { Report } from "src/presentation/pages/private/report";
 import { Traffic } from "src/presentation/pages/private/traffic";
-
+import { Login } from "src/presentation/pages/public/login";
 interface routesType {
   path: string;
   name: string;
@@ -18,7 +18,7 @@ export const privateRouter: routesType[] = [
   },
   {
     path: "/graphics",
-    name: "Graphics",
+    name: "Graficos",
     component: Graphics,
   },
   {
@@ -28,12 +28,20 @@ export const privateRouter: routesType[] = [
   },
   {
     path: "/report",
-    name: "Report",
+    name: "Reportes",
     component: Report,
   },
   {
     path: "/traffic",
-    name: "Traffic",
+    name: "Trafico",
     component: Traffic,
+  },
+];
+
+export const publicRouter: routesType[] = [
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
   },
 ];
