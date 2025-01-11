@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 export const Login = () => {
   return (
     <div>
@@ -11,8 +12,10 @@ export const Login = () => {
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" name="password" />
         </div>
-        <button type="submit">Login</button>
       </form>
+      <button onClick={() => toast("My first toast")}>
+        <span>Render a toast</span>
+      </button>
     </div>
   );
 };
