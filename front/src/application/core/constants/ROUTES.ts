@@ -12,9 +12,10 @@ import {
   ICON_IDS,
   ICON_REPORT,
   ICON_ALERT,
+  ICON_LOGOUT,
 } from "src/presentation/shared/global/icons";
 
-interface routesType {
+export interface routesType {
   path: string;
   name: string;
   component: () => JSX.Element;
@@ -57,6 +58,12 @@ export const privateRouter: routesType[] = [
     name: "Alertas",
     component: Alert,
     icon: ICON_ALERT,
+  },
+  {
+    path: "/",
+    name: "Cerrar Sesión",
+    component: Login,
+    icon: ICON_LOGOUT,
   },
 ];
 

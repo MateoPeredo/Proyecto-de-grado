@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { SideBar } from "../shared/private/sideBar";
+import { SideBar } from "../shared/sideBar";
 import { MainHeader } from "../shared/private/mainHeder";
 import { MenuProvider } from "../../application/core/context/menu.context";
 

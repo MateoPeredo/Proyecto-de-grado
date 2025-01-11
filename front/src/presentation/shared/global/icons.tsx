@@ -1,5 +1,5 @@
 import { TbNetwork } from "react-icons/tb";
-import { IoPieChartSharp } from "react-icons/io5";
+import { IoLogOut, IoPieChartSharp } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { HiBellAlert } from "react-icons/hi2";
 import { BsCpuFill } from "react-icons/bs";
@@ -13,3 +13,4 @@ export const ICON_REPORT = <BiSolidReport />;
 export const ICON_ALERT = <HiBellAlert />;
 export const ICON_DASHBOARD = <MdDashboard />;
 export const ICON_MENU = <RiMenu5Line />;
+export const ICON_LOGOUT = <IoLogOut />;
