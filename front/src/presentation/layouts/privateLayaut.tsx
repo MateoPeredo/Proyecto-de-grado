@@ -1,14 +1,17 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
+import { SideBar } from "../shared/private/sideBar";
+import { MainHeader } from "../shared/private/mainHeder";
+import { MenuProvider } from "../../application/core/context/menu.context";
 
 export const PrivateLayaut = () => {
   return (
-    <div className="w-[100dvw] h-[100dvh] grid grid-cols-[250px_1fr] ">
-      <nav className=" w-full bg-primary">navbar</nav>
-      <main className="bg-secondary flex flex-col w-full">
-        <header className="bg-secondary">navTop</header>
-        <Outlet />
-      </main>
+    <div className="w-[100dvw] h-[100dvh] flex flex-col">
+      <MenuProvider>
+        <MainHeader />
+        <main className="bg-secondary flex  w-full h-full">
+          <SideBar /> <Outlet />
+        </main>
+      </MenuProvider>
     </div>
   );
 };
