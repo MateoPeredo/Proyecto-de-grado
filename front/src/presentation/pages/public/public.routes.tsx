@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { publicRouter } from "../../../application/core/constants/ROUTES";
-import { NotFound } from "./notFound";
 
 export const RouterPublic = () => {
   return (
@@ -12,7 +11,6 @@ export const RouterPublic = () => {
           element={<route.component />}
         />
       ))}
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

@@ -40,7 +40,7 @@ export const privateRouter: routesType[] = [
 
 export const publicRouter: routesType[] = [
   {
-    path: "/login",
+    path: "login",
     name: "Login",
     component: Login,
   },
