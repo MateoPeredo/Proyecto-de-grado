@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { privateRouter } from "../../../application/core/constants/ROUTES";
 import { useMenu } from "../../../application/core/hooks/useMenu";
 import { CustomLink } from "./customLink";

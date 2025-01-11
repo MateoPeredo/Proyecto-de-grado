@@ -1,21 +1,18 @@
 import { toast } from "sonner";
+import BackgroundSVG from "../../../shared/public/backgroundSVG";
+
 export const Login = () => {
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" />
-        </div>
+    <div className="h-screen w-full bg-secondary flex justify-center items-center ">
+      <section className="w-1/2 inset-0  h-full ">
+        <BackgroundSVG />
+      </section>
+      <form className=" bg-secondary z-50 w-1/2 h-1/2 shadow-sm flex  justify-center items-center flex-col">
+        <h1 className="text-2xl text-primary font-bold">
+          Sistema de detección de intrusiones
+        </h1>
+        <span className="font-bold">Conseso</span>
       </form>
-      <button onClick={() => toast("My first toast")}>
-        <span>Render a toast</span>
-      </button>
     </div>
   );
 };
