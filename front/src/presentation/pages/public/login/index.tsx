@@ -7,12 +7,13 @@ export const Login = () => {
       <section className="w-1/2 inset-0  h-full ">
         <BackgroundSVG />
       </section>
-      <form className=" bg-secondary z-50 w-1/2 h-1/2 shadow-sm flex  justify-center items-center flex-col">
+      <section className=" bg-secondary z-50 w-1/2 h-1/2 shadow-sm flex  justify-center items-center flex-col">
         <h1 className="text-2xl text-primary font-bold">
           Sistema de detección de intrusiones
         </h1>
         <span className="font-bold">Conseso</span>
-      </form>
+        <form></form>
+      </section>
     </div>
   );
 };
