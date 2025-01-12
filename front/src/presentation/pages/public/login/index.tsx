@@ -4,13 +4,14 @@ import { LoginForm } from "./components/form";
 
 export const Login = () => {
   return (
-    <div className="h-screen w-full bg-secondary flex justify-center items-center p-4 ">
-      <section className="w-1/2 inset-0  h-full ">
-        <BackgroundSVG />
-      </section>
+    <div className="h-screen w-full bg-gray-950 flex justify-center items-center p-8  ">
+      <BackgroundSVG />
+
       <Company />
-      <section className=" bg-white/70 z-50 w-1/2 h-full shadow-sm flex justify-center items-center flex-col rounded-xl gap-2">
-        <h1 className="text-3xl font-bold text-primary">Inicio de seción</h1>
+      <section className=" bg-white z-50 w-2/5 h-2/3 shadow-sm flex justify-center items-center flex-col rounded-xl gap-2">
+        <h1 className="text-4xl font-bold  mb-8">
+          Inicio de seción
+        </h1>
         <LoginForm />
       </section>
     </div>

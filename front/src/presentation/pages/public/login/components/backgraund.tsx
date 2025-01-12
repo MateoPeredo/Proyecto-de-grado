@@ -1,6 +1,6 @@
 export const BackgroundSVG = () => {
   return (
-    <div className="fixed inset-0 w-[100dvh] h-full overflow-hidden bg-secondary rotate-90">
+    <div className="fixed  w-full overflow-hidden  rotate-90">
       <svg
         className="w-full h-full"
         viewBox="0 0 1000 1000"
@@ -52,7 +52,7 @@ export const BackgroundSVG = () => {
         </g>
 
         {/* Dynamic Lines */}
-        {Array.from({ length: 40 }).map((_, index) => (
+        {Array.from({ length: 25 }).map((_, index) => (
           <path
             key={`line-${index}`}
             d={`M${Math.random() * 1000},0 Q${
@@ -83,7 +83,7 @@ export const BackgroundSVG = () => {
         ))}
 
         {/* Particles */}
-        {Array.from({ length: 50 }).map((_, index) => (
+        {Array.from({ length: 100 }).map((_, index) => (
           <circle
             key={`particle-${index}`}
             r={Math.random() * 2 + 1}
