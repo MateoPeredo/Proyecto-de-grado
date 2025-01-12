@@ -24,6 +24,7 @@ export const LoginForm = () => {
       <PrymaryButton classButton="mt-4" type="submit">
         Iniciar seción
       </PrymaryButton>
+      <label className=" text-center text-secondary text-sm ">Olvidaste tu contraseña</label>
     </form>
   );
 };

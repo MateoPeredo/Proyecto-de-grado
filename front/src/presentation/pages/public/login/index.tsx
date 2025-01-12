@@ -8,8 +8,8 @@ export const Login = () => {
       <BackgroundSVG />
 
       <Company />
-      <section className=" bg-white/10 backdrop-blur-md border border-white/20 z-50 w-2/5 h-[32rem] shadow-sm flex justify-center items-center flex-col rounded-xl gap-2">
-        <h1 className="text-4xl font-bold  mb-4 text-white/80">Inicio de seción</h1>
+      <section className=" bg-white/10 backdrop-blur-md border border-secondary/20 z-50 w-2/5 h-[32rem] shadow-sm flex justify-center items-center flex-col rounded-xl gap-2">
+        <h1 className="text-4xl font-bold  mb-4 text-secondary/80">Inicio de seción</h1>
         <LoginForm />
       </section>
     </div>
