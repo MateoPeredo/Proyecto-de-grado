@@ -59,12 +59,7 @@ export const privateRouter: routesType[] = [
     component: Alert,
     icon: ICON_ALERT,
   },
-  {
-    path: "/",
-    name: "Cerrar Sesión",
-    component: Login,
-    icon: ICON_LOGOUT,
-  },
+  
 ];
 
 export const publicRouter: routesType[] = [

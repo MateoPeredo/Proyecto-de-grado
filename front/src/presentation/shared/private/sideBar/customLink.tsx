@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { routesType } from "../../../application/core/constants/ROUTES";
+import { routesType } from "../../../../application/core/constants/ROUTES";
 
 export interface routesWithActive extends Omit<routesType, "component"> {
   active: boolean;

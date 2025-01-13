@@ -1,7 +1,8 @@
 import { useLocation } from "react-router-dom";
-import { privateRouter } from "../../../application/core/constants/ROUTES";
-import { useMenu } from "../../../application/core/hooks/useMenu";
+import { privateRouter } from "../../../../application/core/constants/ROUTES";
+import { useMenu } from "../../../../application/core/hooks/useMenu";
 import { CustomLink } from "./customLink";
+import { ICON_LOGOUT } from "../../global/icons";
 
 export const SideBar = () => {
   const { isCollapsed } = useMenu();
@@ -27,6 +28,14 @@ export const SideBar = () => {
             />
           );
         })}
+
+        <CustomLink
+          active={false}
+          path="/login"
+          name="Logout"
+          isCollapsed={isCollapsed}
+          icon={ICON_LOGOUT}
+        />
       </section>
     </nav>
   );

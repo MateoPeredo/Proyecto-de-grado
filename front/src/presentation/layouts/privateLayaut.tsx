@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { SideBar } from "../shared/sideBar";
+import { SideBar } from "../shared/private/sideBar";
 import { MainHeader } from "../shared/private/mainHeder";
 import { MenuProvider } from "../../application/core/context/menu.context";
 
@@ -9,7 +9,8 @@ export const PrivateLayaut = () => {
       <MenuProvider>
         <MainHeader />
         <main className="bg-secondary flex  w-full h-full">
-          <SideBar /> <Outlet />
+          <SideBar />
+          <Outlet />
         </main>
       </MenuProvider>
     </div>

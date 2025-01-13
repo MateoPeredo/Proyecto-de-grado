@@ -9,7 +9,7 @@ export const PrymaryButton: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`bg-primary text-white/90 p-2 rounded-md w-full hover:bg-primary/50 ${classButton}`}
+      className={`bg-primary text-white/90 p-2 rounded-md w-full hover:bg-primary/70 transition-all duration-700 ease-in-out ${classButton}`}
       {...props}
     >
       {children}
