@@ -3,15 +3,13 @@ import { ApexOptions } from "apexcharts";
 export interface propsLineChart {
   options?: ApexOptions;
   series: ApexAxisChartSeries | ApexNonAxisChartSeries;
+  chartId: number | string;
+  colorScheme?: string;
 }
-export type ColorOption = {
-  color: string;
-  opacity: number;
-};
 
 export type StrokeOption = {
   curve: ApexStroke;
   colors: string[];
 };
 
-export type OptionTypeChartLine = ApexChart
+export type OptionTypeChartLine = ApexChart;
