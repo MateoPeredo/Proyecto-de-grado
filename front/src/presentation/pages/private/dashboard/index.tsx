@@ -50,11 +50,12 @@ export const Dashboard = () => {
     },
   ];
 
-  const { toggle ,setContent } = useDrawer();
-  const handleOpenConfig =()=>{
-    setContent(<ConfigurationDashboard/>)
-    toggle()
-  }
+  const { toggle, setContent, setTitle } = useDrawer();
+  const handleOpenConfig = () => {
+    setTitle("Configuraciones");
+    setContent(<ConfigurationDashboard />);
+    toggle();
+  };
   return (
     <div className=" w-full">
       <h1>Dashboard</h1>

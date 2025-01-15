@@ -1,26 +1,11 @@
 import { createContext, ReactNode, useState } from "react";
+import {
+  ButtonProps,
+  DrawerProps,
+  DrawerProviderProps,
+  DrawerState,
+} from "src/application/core/types/drawer.types";
 
-interface ButtonProps {
-  label: string;
-  onClick: () => void;
-}
-interface DrawerState {
-  isVisible: boolean;
-  content: ReactNode;
-  title: string;
-  buttons: ButtonProps[];
-}
-interface DrawerProps {
-  state: DrawerState;
-  toggle: () => void;
-  setContent: (content: ReactNode) => void;
-  setTitle: (title: string) => void;
-  setButtons: (buttons: ButtonProps[]) => void;
-}
-
-interface DrawerProviderProps {
-  children: ReactNode;
-}
 export const DrawerContext = createContext<DrawerProps | undefined>(undefined);
 export const DrawerProvider: React.FC<DrawerProviderProps> = ({ children }) => {
   const [state, setState] = useState<DrawerState>({
@@ -62,7 +47,7 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = ({ children }) => {
         toggle,
         setContent,
         setButtons,
-        setTitle
+        setTitle,
       }}
     >
       {children}
