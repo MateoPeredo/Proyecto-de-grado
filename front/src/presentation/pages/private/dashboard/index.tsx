@@ -1,6 +1,7 @@
 import { ApexOptions } from "apexcharts";
 import { ApexChartLine } from "../../../../application/modules/graphics/line-charts";
 import { useDrawer } from "../../../../application/core/hooks/useDrawer";
+import { ConfigurationDashboard } from "./configuration";
 
 export const Dashboard = () => {
   const configuraciones: ApexOptions = {
@@ -49,12 +50,16 @@ export const Dashboard = () => {
     },
   ];
 
-  const { toggle } = useDrawer();
+  const { toggle ,setContent } = useDrawer();
+  const handleOpenConfig =()=>{
+    setContent(<ConfigurationDashboard/>)
+    toggle()
+  }
   return (
     <div className=" w-full">
       <h1>Dashboard</h1>
       <ApexChartLine series={series} options={configuraciones} />
-      <button onClick={toggle}>configuraciones</button>
+      <button onClick={handleOpenConfig}>configuraciones</button>
     </div>
   );
 };
