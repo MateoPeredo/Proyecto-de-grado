@@ -5,7 +5,7 @@ export const Dashboard = () => {
   const configuraciones : ApexOptions= {
     chart: {
       height: 350,
-      type: "bar",
+      type: "line",
       zoom: {
         enabled: true,
       },

@@ -1,11 +1,7 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import { ApexOptions } from "apexcharts";
-type dataSeries = { name: string; data: number[] };
-interface propsLineChart {
-  options?: ApexOptions;
-  series: dataSeries[];
-}
+import { propsLineChart } from "./types";
+
 export const ApexChartLine: React.FC<propsLineChart> = ({
   options,
   series,
