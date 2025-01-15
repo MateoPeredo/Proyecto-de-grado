@@ -1,8 +1,9 @@
 import { ApexOptions } from "apexcharts";
 import { ApexChartLine } from "../../../../application/modules/graphics/line-charts";
+import { useDrawer } from "../../../../application/core/hooks/useDrawer";
 
 export const Dashboard = () => {
-  const configuraciones : ApexOptions= {
+  const configuraciones: ApexOptions = {
     chart: {
       height: 350,
       type: "line",
@@ -47,10 +48,13 @@ export const Dashboard = () => {
       data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
     },
   ];
+
+  const { toggle } = useDrawer();
   return (
     <div className=" w-full">
       <h1>Dashboard</h1>
       <ApexChartLine series={series} options={configuraciones} />
+      <button onClick={toggle}>configuraciones</button>
     </div>
   );
 };
