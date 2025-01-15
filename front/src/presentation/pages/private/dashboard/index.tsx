@@ -1,3 +1,56 @@
+import { ApexOptions } from "apexcharts";
+import { ApexChartLine } from "../../../../application/modules/graphics/line-charts";
+
 export const Dashboard = () => {
-  return <div>Dashboard</div>;
+  const configuraciones : ApexOptions= {
+    chart: {
+      height: 350,
+      type: "bar",
+      zoom: {
+        enabled: true,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: ["straight", "monotoneCubic"],
+      colors: ["#E30613"],
+    },
+    title: {
+      text: "Product Trends by Month",
+      align: "left",
+    },
+    grid: {
+      row: {
+        colors: ["#E30613"],
+        opacity: 0.1,
+      },
+    },
+    xaxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+      ],
+    },
+  };
+  const series = [
+    {
+      name: "Desktops",
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+    },
+  ];
+  return (
+    <div className=" w-full">
+      <h1>Dashboard</h1>
+      <ApexChartLine series={series} options={configuraciones} />
+    </div>
+  );
 };
