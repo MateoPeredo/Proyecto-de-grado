@@ -6,7 +6,7 @@ export const Drawer = () => {
   const { buttons, isVisible, content, title } = state;
   return (
     <main
-      className={`w-[400px] bg-white fixed top-0 right-0 h-[100dvh] z-50 shadow-md transition-transform duration-300 ${
+      className={`w-[450px] bg-white fixed top-0 right-0 h-[100dvh] z-50 shadow-md transition-transform duration-300 ${
         isVisible ? "translate-x-0" : "translate-x-full"
       } p-4`}
     >
@@ -16,7 +16,7 @@ export const Drawer = () => {
           {ICON_CLOSE}
         </button>
       </header>
-      <body className="py-2">
+      <body className="py-2 overflow-y-scroll">
         {content ? (
           content
         ) : (

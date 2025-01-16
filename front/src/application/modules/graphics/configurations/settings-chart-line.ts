@@ -1,1 +1,1 @@
-export const chartLine = ["line", "bar", "area", "scatter", "pie"];
+export const chartLine = ["line", "area", "scatter", "pie"];

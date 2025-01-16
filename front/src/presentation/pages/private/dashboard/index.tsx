@@ -52,7 +52,7 @@ export const Dashboard = () => {
 
   const { toggle, setContent, setTitle } = useDrawer();
   const handleOpenConfig = () => {
-    setTitle("Configuraciones");
+    setTitle("Configuración de grafico");
     setContent(<ConfigurationDashboard />);
     toggle();
   };

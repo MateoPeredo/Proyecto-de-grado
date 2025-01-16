@@ -11,7 +11,7 @@ export const Card: React.FC<CardProp> = ({
 }) => {
   return (
     <button
-      className="w-full bg-primary/20 flex justify-center items-center min-h-16 hover:bg-primary/50 rounded-md"
+      className="min-w-32 bg-primary/20 flex justify-center items-center min-h-32 hover:bg-primary/50 rounded-md"
       {...props}
     >
       {icon && <p>{icon}</p>}
