@@ -5,8 +5,8 @@ export const Drawer = () => {
   const { toggle, state } = useDrawer();
   const { buttons, isVisible, content, title } = state;
   return (
-    <main
-      className={`w-[450px] bg-white fixed top-0 right-0 h-[100dvh] z-50 shadow-md transition-transform duration-300 ${
+    <article
+      className={`w-[400px] bg-white fixed top-0 right-0 h-[100dvh] z-50 shadow-md transition-transform duration-300 ${
         isVisible ? "translate-x-0" : "translate-x-full"
       } p-4`}
     >
@@ -16,13 +16,7 @@ export const Drawer = () => {
           {ICON_CLOSE}
         </button>
       </header>
-      <body className="py-2 overflow-y-scroll">
-        {content ? (
-          content
-        ) : (
-          <h4>Error en proporcionar contenido de configuracion</h4>
-        )}
-      </body>
+      <div className="py-2 overflow-y-auto h-full">{content && content}</div>
       <footer>
         {buttons.map((button, index) => (
           <button
@@ -34,6 +28,6 @@ export const Drawer = () => {
           </button>
         ))}
       </footer>
-    </main>
+    </article>
   );
 };

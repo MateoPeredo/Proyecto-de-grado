@@ -7,14 +7,16 @@ import { DrawerProvider } from "../../application/core/context/drawer.context";
 
 export const PrivateLayaut = () => {
   return (
-    <div className="w-[100dvw] h-[100dvh] flex flex-col">
+    <div className="w-[100dvw] h-[100dvh] flex flex-col overflow-hidden">
       <MenuProvider>
         <DrawerProvider>
           <Drawer />
           <MainHeader />
-          <main className="bg-secondary flex  w-full h-full">
+          <main className="flex  w-full h-full transition-all duration-300 shadow-md ">
             <SideBar />
-            <Outlet />
+            <section className="p-4 w-full">
+              <Outlet />
+            </section>
           </main>
         </DrawerProvider>
       </MenuProvider>

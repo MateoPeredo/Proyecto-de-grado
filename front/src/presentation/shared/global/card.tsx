@@ -1,20 +1,17 @@
-import { ReactNode } from "react";
 interface CardProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   name?: string;
-  icon?: ReactNode;
+  img?: string;
 }
-export const Card: React.FC<CardProp> = ({
-  children,
-  name,
-  icon,
-  ...props
-}) => {
+export const Card: React.FC<CardProp> = ({ children, name, img, ...props }) => {
   return (
     <button
-      className="min-w-32 bg-primary/20 flex justify-center items-center min-h-32 hover:bg-primary/50 rounded-md"
+      className="w-full bg-white flex justify-center items-center min-h-32 hover:bg-primary/10 rounded-md"
       {...props}
     >
-      {icon && <p>{icon}</p>}
+      {img && (
+        <img src={img} alt={name} className="w-full h-full object-cover" />
+        
+      )}
       {children}
       {name && <p>{name}</p>}
     </button>

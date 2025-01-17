@@ -4,7 +4,7 @@ import logo from "src/assets/logo.png";
 export const MainHeader = () => {
   const { toggleMenu } = useMenu();
   return (
-    <header className="bg-tertiary text-white h-12 flex justify-start items-center text-xl p-2">
+    <header className="bg-white h-16 flex justify-start items-center text-xl p-2 border shadow-md">
       <div className="w-[220px] flex justify-center items-center">
         <img src={logo} alt="Logo" />
         <span className="text-base">Conseso</span>

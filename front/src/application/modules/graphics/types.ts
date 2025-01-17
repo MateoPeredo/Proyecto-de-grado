@@ -5,6 +5,8 @@ export interface propsLineChart {
   series: ApexAxisChartSeries | ApexNonAxisChartSeries;
   chartId: number | string;
   colorScheme?: string;
+  optionsLine?:any;
+  seriesLine?:any;
 }
 
 export type StrokeOption = {
