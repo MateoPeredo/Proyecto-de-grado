@@ -12,7 +12,7 @@ export const SideBar = () => {
     <nav
       className={`${
         isCollapsed ? "w-[80px]" : "w-[280px]"
-      }  flex justify-center items-center transition-all duration-300 shadow-md`}
+      }  flex justify-center items-center transition-all duration-300 shadow-md col-start-1 row-start-2`}
     >
       <section className=" flex flex-col gap-2 w-full p-2 justify-center items-center">
         {privateRouter.map((route) => {

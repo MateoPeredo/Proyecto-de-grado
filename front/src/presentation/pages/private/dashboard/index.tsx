@@ -126,17 +126,17 @@ export const Dashboard = () => {
     yaxis: { max: 100, tickAmount: 2 },
   };
 
-    const series = [
-      {
-        name: "Desktops",
-        data: [
-          { x: new Date("2023-01-01").getTime(), y: 10 },
-          { x: new Date("2023-02-01").getTime(), y: 41 },
-          { x: new Date("2023-03-01").getTime(), y: 150 },
-          { x: new Date("2023-04-01").getTime(), y: 50 },
-        ],
-      },
-    ];
+  const series = [
+    {
+      name: "Desktops",
+      data: [
+        { x: new Date("2023-01-01").getTime(), y: 10 },
+        { x: new Date("2023-02-01").getTime(), y: 41 },
+        { x: new Date("2023-03-01").getTime(), y: 150 },
+        { x: new Date("2023-04-01").getTime(), y: 50 },
+      ],
+    },
+  ];
 
   const { toggle, setContent, setTitle } = useDrawer();
   const handleOpenConfig = () => {
@@ -148,10 +148,10 @@ export const Dashboard = () => {
     <div className=" w-full">
       <h1>Dashboard</h1>
       <ApexChartLine
-        // series={series}
-        // options={configuraciones}
-        // chartId={1}
-        // optionsLine={optionsLine}
+      // series={series}
+      // options={configuraciones}
+      // chartId={1}
+      // optionsLine={optionsLine}
       />
       <button onClick={handleOpenConfig}>configuraciones</button>
     </div>
