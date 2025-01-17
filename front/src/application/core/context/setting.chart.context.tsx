@@ -13,57 +13,110 @@ export const SettingChartContext = createContext<ContextProp | undefined>(
   undefined
 );
 
-export const SettingChartPrivider: React.FC<ProviderProp> = ({ children }) => {
-  const [setting, setSetting] = useState<settings>({
-    colorChart: CHARTCOLORS.default,
-    maxData: {
-      isSelect: false,
-      dataMax: undefined,
-      data: [],
-    },
-    typeLine: TYPECHARTLINE.line,
-    chartId: null,
-  });
-  const toggleMaxData = (isSelect: boolean, dataMax?: number) => {
-    setSetting((prev) => {
+export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
+  const [settings, setSettings] = useState<Record<number, settings>>({});
+
+  const toggleMaxData = (
+    chartId: number,
+    isSelect: boolean,
+    dataMax?: number
+  ) => {
+    setSettings((prev) => {
+      const chartSettings = prev[chartId] || {
+        colorChart: CHARTCOLORS.default,
+        maxData: {
+          isSelect: false,
+          dataMax: undefined,
+          data: [],
+        },
+        typeLine: TYPECHARTLINE.line,
+        chartId: chartId,
+      };
+
       const maxValue =
         isSelect && dataMax !== undefined
           ? dataMax
-          : Math.max(...prev.maxData.data.map((point) => point.y));
+          : Math.max(...chartSettings.maxData.data.map((point) => point.y));
 
       return {
         ...prev,
-        maxData: {
-          ...prev.maxData,
-          isSelect: isSelect,
-          dataMax: maxValue,
+        [chartId]: {
+          ...chartSettings,
+          maxData: {
+            ...chartSettings.maxData,
+            isSelect,
+            dataMax: maxValue,
+          },
         },
       };
     });
   };
 
-  const setColor = (color: string[]) => {
-    setSetting((prev) => ({
+  const setColor = (chartId: number, color: string[]) => {
+    setSettings((prev) => {
+      const chartSettings = prev[chartId] || {
+        colorChart: CHARTCOLORS.default,
+        maxData: {
+          isSelect: false,
+          dataMax: undefined,
+          data: [],
+        },
+        typeLine: TYPECHARTLINE.line,
+        chartId: chartId,
+      };
+
+      return {
+        ...prev,
+        [chartId]: {
+          ...chartSettings,
+          colorChart: color,
+          
+        },
+      };
+    });
+  };
+
+  const setTypeLine = (chartId: number, type: keyof typeof TYPECHARTLINE) => {
+    setSettings((prev) => ({
       ...prev,
-      colorChart: color,
+      [chartId]: {
+        ...prev[chartId],
+        typeLine: type,
+      },
     }));
   };
-  const setTypeLine = (type: keyof typeof TYPECHARTLINE) => {
-    setSetting((prev) => ({
-      ...prev,
-      typeLine: type,
-    }));
-  };
-  const setIdChart = (id: Number) => {
-    setSetting((prev) => ({
-      ...prev,
-      chartId: id,
-    }));
+  const setDataLabel = (chartId: number, isLabel: boolean) => {
+    setSettings((prev) => {
+      const chartSettings = prev[chartId] || {
+        colorChart: CHARTCOLORS.default,
+        maxData: {
+          isSelect: false,
+          dataMax: undefined,
+          data: [],
+        },
+        typeLine: TYPECHARTLINE.line,
+        chartId: chartId,
+      };
+
+      return {
+        ...prev,
+        [chartId]: {
+          ...chartSettings,
+          dataLabel: !isLabel,
+        },
+      };
+    });
   };
 
   return (
     <SettingChartContext.Provider
-      value={{ setting, setColor, setTypeLine, setIdChart, toggleMaxData }}
+      value={{
+        settings,
+        setColor,
+        setTypeLine,
+        toggleMaxData,
+        setDataLabel,
+      }}
     >
       {children}
     </SettingChartContext.Provider>

@@ -1,16 +1,20 @@
-import { Card } from "../../../shared/global/card";
-import imgLineBasic from "src/assets/charts/basic-line-chart.svg";
-import imgLineLabel from "src/assets/charts/line-chart-data-labels.svg";
-import imgLineTimeSeries from "src/assets/charts/line-chart-timeseries.svg";
-export const ConfigurationDashboard = () => {
-  const changeOptionChart = () => {};
+import { useChart } from "../../../../application/core/hooks/useChartConfig";
+
+export const ConfigurationDashboard = ({ chartId }: { chartId: number }) => {
+  const { settings, setColor, setDataLabel } = useChart();
+
+  const handleChangeColor = () => {
+    setColor(chartId, ["#000"]);
+  };
+  const handleChangeLabel = () => {
+    setDataLabel(chartId, settings[chartId]?.dataLabel || false);
+  };
   return (
     <section className=" w-full flex flex-col gap-4">
       <p className="text-md ">Tipo de Gráfica</p>
       <article className="grid grid-cols-2 gap-2 ">
-        <Card onClick={changeOptionChart} img={imgLineBasic} />
-        <Card onClick={changeOptionChart} img={imgLineLabel} />
-        <Card onClick={changeOptionChart} img={imgLineTimeSeries} />
+        <button onClick={handleChangeColor}>Cambiar Color</button>
+        <button onClick={handleChangeLabel}>Poner Labels</button>
       </article>
     </section>
   );

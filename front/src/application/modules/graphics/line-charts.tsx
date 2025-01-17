@@ -1,43 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 import { Props } from "react-apexcharts";
 import { CHARTCOLORS } from "./configurations/default";
-import { DataPoint } from "./types";
+import { useChart } from "../../core/hooks/useChartConfig";
+import { DataPoint } from "../../core/types/chart.settings.type";
 
-export const data1: DataPoint[] = [
-  { x: new Date("2023-01-01").getTime(), y: 30 },
-  { x: new Date("2023-02-01").getTime(), y: 40 },
-  { x: new Date("2023-03-01").getTime(), y: 35 },
-  { x: new Date("2023-04-01").getTime(), y: 50 },
-  { x: new Date("2023-05-01").getTime(), y: 49 },
-  { x: new Date("2023-06-01").getTime(), y: 60 },
-  { x: new Date("2023-07-02").getTime(), y: 100 },
-  { x: new Date("2023-07-03").getTime(), y: 5 },
-  { x: new Date("2023-07-04").getTime(), y: 40 },
-  { x: new Date("2023-07-08").getTime(), y: 320 },
-  { x: new Date("2023-08-09").getTime(), y: 0 },
-];
-const maxValue = Math.max(...data1.map((point) => point.y));
+interface ApexChartLineProps {
+  chartId: number;
+  data: DataPoint[];
+  name: string;
+  titleY: string;
+}
+export const ApexChartLine: React.FC<ApexChartLineProps> = ({
+  chartId,
+  data,
+  name,
+  titleY,
+}) => {
+  const { settings } = useChart();
 
-export const ApexChartLine: React.FC = () => {
   const [state, setState] = React.useState<Props>({
     series: [
       {
-        name: "Flies",
-        data: data1,
+        name: name,
+        data: data,
       },
     ],
     options: {
       chart: {
         id: "chart2",
-        type: "line",
+        type: "area",
         height: 230,
         toolbar: {
           autoSelected: "pan",
-          show: false,
+          show: true,
+          tools: {
+            download: true,
+          },
         },
       },
-      colors: CHARTCOLORS.default,
+
+      colors: settings[chartId]?.colorChart || CHARTCOLORS.default,
       stroke: {
         width: 2,
         curve: "smooth",
@@ -46,22 +49,33 @@ export const ApexChartLine: React.FC = () => {
       markers: {
         size: 4,
       },
+      dataLabels: {
+        enabled: settings[chartId]?.dataLabel || false,
+      },
       xaxis: {
         type: "datetime",
+        labels: {
+          format: "dd MMM",
+        },
+        tooltip: {
+          enabled: true,
+        },
       },
 
       yaxis: {
         title: {
-          text: "Value",
+          text: titleY,
         },
         min: 0,
-        max: maxValue,
+        max:
+          settings[chartId]?.maxData.dataMax ??
+          Math.max(...data.map((point) => point.y)),
       },
     },
     seriesLine: [
       {
-        name: "Flies",
-        data: data1,
+        name: "MGb",
+        data: data,
       },
     ],
     optionsLine: {
@@ -77,8 +91,8 @@ export const ApexChartLine: React.FC = () => {
         selection: {
           enabled: true,
           xaxis: {
-            min: new Date("2023-01-01").getTime(),
-            max: new Date("2023-05-01").getTime(),
+            min: Math.min(...data.map((point) => point.x)),
+            max: Math.max(...data.map((point) => point.x)),
           },
         },
         fill: {
@@ -89,7 +103,8 @@ export const ApexChartLine: React.FC = () => {
           },
         },
       },
-      colors: CHARTCOLORS.default,
+      colors: settings[chartId]?.colorChart || CHARTCOLORS.default,
+
       stroke: {
         width: 1,
         curve: "smooth",
@@ -109,12 +124,35 @@ export const ApexChartLine: React.FC = () => {
       },
       yaxis: {
         min: 0,
-        max: maxValue,
+        max: settings[chartId]?.maxData.dataMax,
         tickAmount: 2,
       },
     },
   });
 
+  useEffect(() => {
+    if (settings[chartId]) {
+      console.log("Esta cambiando seguido ");
+
+      setState((prev) => ({
+        ...prev,
+        seriesLine: [
+          {
+            color: settings[chartId]?.colorChart || CHARTCOLORS.default, 
+          },
+        ],
+        options: {
+          ...prev.options,
+          colors: settings[chartId]?.colorChart,
+          dataLabels: { enabled: settings[chartId]?.dataLabel },
+          yaxis: {
+            ...prev.options?.yaxis,
+            max: settings[chartId]?.maxData.dataMax,
+          },
+        },
+      }));
+    }
+  }, [settings, chartId]);
   return (
     <div className="w-full">
       <div>

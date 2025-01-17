@@ -23,13 +23,14 @@ export interface settings {
   typeLine: keyof typeof TYPECHARTLINE;
   colorChart: string[];
   maxData: MaxData;
-  chartId: Number | null;
+  chartId: number | null;
+  dataLabel: boolean;
 }
 
 export interface ContextProp {
-  setting: settings;
-  setColor: (color: string[]) => void;
-  setTypeLine: (type: keyof typeof TYPECHARTLINE) => void;
-  setIdChart: (id: Number) => void;
-  toggleMaxData: (isSelect: boolean, dataMax?: number) => void;
+  settings: Record<number, settings>;
+  setColor: (chartId: number, color: string[]) => void;
+  setTypeLine: (chartId: number, type: keyof typeof TYPECHARTLINE) => void;
+  toggleMaxData: (chartId: number, isSelect: boolean, dataMax?: number) => void;
+  setDataLabel: (chartId: number, isLabel: boolean) => void;
 }
