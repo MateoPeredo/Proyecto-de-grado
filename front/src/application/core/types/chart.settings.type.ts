@@ -11,7 +11,7 @@ export type DataPoint = { x: number; y: number };
 export interface MaxData {
   isSelect: boolean;
   dataMax?: number;
-  data: DataPoint[];
+  data: number[];
 }
 
 // props de context

@@ -7,3 +7,4 @@ export const TYPECHARTLINE = {
   line: "line",
   area: "area",
 } as const;
+

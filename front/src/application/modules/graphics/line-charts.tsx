@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useMemo, useContext } from "react";
 import ReactApexChart from "react-apexcharts";
 import { Props } from "react-apexcharts";
+import { DataPoint } from "../../core/types/chart.settings.type";
 import { CHARTCOLORS } from "./configurations/default";
 import { useChart } from "../../core/hooks/useChartConfig";
-import { DataPoint } from "../../core/types/chart.settings.type";
+import { ApexOptions } from "apexcharts";
 
 interface ApexChartLineProps {
   chartId: number;
@@ -11,6 +12,7 @@ interface ApexChartLineProps {
   name: string;
   titleY: string;
 }
+
 export const ApexChartLine: React.FC<ApexChartLineProps> = ({
   chartId,
   data,
@@ -19,16 +21,19 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
 }) => {
   const { settings } = useChart();
 
-  const [state, setState] = React.useState<Props>({
-    series: [
-      {
-        name: name,
-        data: data,
-      },
-    ],
-    options: {
+  const chartSettings = settings[chartId] || {
+    colorChart: CHARTCOLORS.default,
+    maxData: { isSelect: false, dataMax: undefined, data: [] },
+    dataLabel: false,
+  };
+
+  const state = useMemo(() => {
+    const maxData =
+      chartSettings.maxData.dataMax ??
+      Math.max(...data.map((point) => point.y));
+    const options: ApexOptions = {
       chart: {
-        id: "chart2",
+        id: `chart${chartId}`,
         type: "area",
         height: 230,
         toolbar: {
@@ -39,55 +44,38 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
           },
         },
       },
-
-      colors: settings[chartId]?.colorChart || CHARTCOLORS.default,
-      stroke: {
-        width: 2,
-        curve: "smooth",
-      },
-
-      markers: {
-        size: 4,
-      },
-      dataLabels: {
-        enabled: settings[chartId]?.dataLabel || false,
-      },
+      colors: chartSettings.colorChart,
+      stroke: { width: 2, curve: "smooth" },
+      markers: { size: 4 },
+      dataLabels: { enabled: chartSettings.dataLabel },
       xaxis: {
         type: "datetime",
-        labels: {
-          format: "dd MMM",
-        },
-        tooltip: {
-          enabled: true,
-        },
+        labels: { format: "dd MMM" },
+        tooltip: { enabled: true },
       },
-
       yaxis: {
-        title: {
-          text: titleY,
-        },
+        title: { text: titleY },
         min: 0,
-        max:
-          settings[chartId]?.maxData.dataMax ??
-          Math.max(...data.map((point) => point.y)),
+        max: maxData,
       },
-    },
-    seriesLine: [
+    };
+
+    const seriesLine = [
       {
         name: "MGb",
-        data: data,
+        data,
       },
-    ],
-    optionsLine: {
+    ];
+
+    const optionsLine: ApexOptions = {
       chart: {
-        id: "chart1",
+        id: `chart${chartId}-line`,
         height: 800,
         type: "area",
         brush: {
-          target: "chart2",
+          target: `chart${chartId}`,
           enabled: true,
         },
-
         selection: {
           enabled: true,
           xaxis: {
@@ -95,82 +83,37 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
             max: Math.max(...data.map((point) => point.x)),
           },
         },
-        fill: {
-          type: "gradient",
-          gradient: {
-            opacityFrom: 0.75,
-            opacityTo: 0.1,
-          },
-        },
       },
-      colors: settings[chartId]?.colorChart || CHARTCOLORS.default,
-
-      stroke: {
-        width: 1,
-        curve: "smooth",
-      },
-      fill: {
-        type: "gradient",
-        gradient: {
-          opacityFrom: 0.75,
-          opacityTo: 0.1,
-        },
-      },
+      colors: chartSettings.colorChart,
+      stroke: { width: 1, curve: "smooth" },
       xaxis: {
         type: "datetime",
-        tooltip: {
-          enabled: false,
-        },
+        tooltip: { enabled: false },
       },
       yaxis: {
         min: 0,
-        max: settings[chartId]?.maxData.dataMax,
+        max: chartSettings.maxData.dataMax,
         tickAmount: 2,
       },
-    },
-  });
+    };
 
-  useEffect(() => {
-    if (settings[chartId]) {
-      console.log("Esta cambiando seguido ");
+    return { options, seriesLine, optionsLine };
+  }, [chartSettings, data, titleY, chartId]);
 
-      setState((prev) => ({
-        ...prev,
-        seriesLine: [
-          {
-            color: settings[chartId]?.colorChart || CHARTCOLORS.default, 
-          },
-        ],
-        options: {
-          ...prev.options,
-          colors: settings[chartId]?.colorChart,
-          dataLabels: { enabled: settings[chartId]?.dataLabel },
-          yaxis: {
-            ...prev.options?.yaxis,
-            max: settings[chartId]?.maxData.dataMax,
-          },
-        },
-      }));
-    }
-  }, [settings, chartId]);
   return (
     <div className="w-full">
-      <div>
-        <ReactApexChart
-          options={state.options}
-          series={state.series}
-          type="line"
-          height={230}
-        />
-      </div>
-      <div>
-        <ReactApexChart
-          options={state.optionsLine}
-          series={state.seriesLine}
-          type="area"
-          height={130}
-        />
-      </div>
+      <ReactApexChart
+        options={state.options}
+        series={state.seriesLine}
+        type="line"
+        height={230}
+      />
+      <ReactApexChart
+        options={state.optionsLine}
+        series={state.seriesLine}
+        type="area"
+        height={130}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import {
   ContextProp,
   ProviderProp,
@@ -24,29 +24,21 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
     setSettings((prev) => {
       const chartSettings = prev[chartId] || {
         colorChart: CHARTCOLORS.default,
-        maxData: {
-          isSelect: false,
-          dataMax: undefined,
-          data: [],
-        },
+        maxData: { isSelect: false, dataMax: undefined, data: [] },
         typeLine: TYPECHARTLINE.line,
-        chartId: chartId,
+        chartId,
       };
 
       const maxValue =
         isSelect && dataMax !== undefined
           ? dataMax
-          : Math.max(...chartSettings.maxData.data.map((point) => point.y));
+          : Math.max(...chartSettings.maxData.data);
 
       return {
         ...prev,
         [chartId]: {
           ...chartSettings,
-          maxData: {
-            ...chartSettings.maxData,
-            isSelect,
-            dataMax: maxValue,
-          },
+          maxData: { ...chartSettings.maxData, isSelect, dataMax: maxValue },
         },
       };
     });
@@ -56,13 +48,9 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
     setSettings((prev) => {
       const chartSettings = prev[chartId] || {
         colorChart: CHARTCOLORS.default,
-        maxData: {
-          isSelect: false,
-          dataMax: undefined,
-          data: [],
-        },
+        maxData: { isSelect: false, dataMax: undefined, data: [] },
         typeLine: TYPECHARTLINE.line,
-        chartId: chartId,
+        chartId,
       };
 
       return {
@@ -70,7 +58,6 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
         [chartId]: {
           ...chartSettings,
           colorChart: color,
-          
         },
       };
     });
@@ -85,17 +72,14 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
       },
     }));
   };
-  const setDataLabel = (chartId: number, isLabel: boolean) => {
+
+  const setDataLabel = (chartId: number, isLabel: boolean = false) => {
     setSettings((prev) => {
       const chartSettings = prev[chartId] || {
         colorChart: CHARTCOLORS.default,
-        maxData: {
-          isSelect: false,
-          dataMax: undefined,
-          data: [],
-        },
+        maxData: { isSelect: false, dataMax: undefined, data: [] },
         typeLine: TYPECHARTLINE.line,
-        chartId: chartId,
+        chartId,
       };
 
       return {

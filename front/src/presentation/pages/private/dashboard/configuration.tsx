@@ -7,7 +7,7 @@ export const ConfigurationDashboard = ({ chartId }: { chartId: number }) => {
     setColor(chartId, ["#000"]);
   };
   const handleChangeLabel = () => {
-    setDataLabel(chartId, settings[chartId]?.dataLabel || false);
+    setDataLabel(chartId, settings[chartId]?.dataLabel );
   };
   return (
     <section className=" w-full flex flex-col gap-4">
