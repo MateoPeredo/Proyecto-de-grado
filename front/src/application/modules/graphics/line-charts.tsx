@@ -1,8 +1,8 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { Props } from "react-apexcharts";
-
-type DataPoint = { x: number; y: number };
+import { CHARTCOLORS } from "./configurations/default";
+import { DataPoint } from "./types";
 
 export const data1: DataPoint[] = [
   { x: new Date("2023-01-01").getTime(), y: 30 },
@@ -21,7 +21,6 @@ const maxValue = Math.max(...data1.map((point) => point.y));
 
 export const ApexChartLine: React.FC = () => {
   const [state, setState] = React.useState<Props>({
-    // Serie principal
     series: [
       {
         name: "Flies",
@@ -38,17 +37,19 @@ export const ApexChartLine: React.FC = () => {
           show: false,
         },
       },
-      colors: ["#008FFB"],
+      colors: CHARTCOLORS.default,
       stroke: {
         width: 2,
         curve: "smooth",
       },
+
       markers: {
         size: 4,
       },
       xaxis: {
         type: "datetime",
       },
+
       yaxis: {
         title: {
           text: "Value",
@@ -57,8 +58,6 @@ export const ApexChartLine: React.FC = () => {
         max: maxValue,
       },
     },
-
-    // Configuración del gráfico de brush
     seriesLine: [
       {
         name: "Flies",
@@ -68,12 +67,13 @@ export const ApexChartLine: React.FC = () => {
     optionsLine: {
       chart: {
         id: "chart1",
-        height: 130,
+        height: 800,
         type: "area",
         brush: {
-          target: "chart2", // Conecta el gráfico de abajo con el principal
+          target: "chart2",
           enabled: true,
         },
+
         selection: {
           enabled: true,
           xaxis: {
@@ -81,8 +81,15 @@ export const ApexChartLine: React.FC = () => {
             max: new Date("2023-05-01").getTime(),
           },
         },
+        fill: {
+          type: "gradient",
+          gradient: {
+            opacityFrom: 0.75,
+            opacityTo: 0.1,
+          },
+        },
       },
-      colors: ["#008FFB"],
+      colors: CHARTCOLORS.default,
       stroke: {
         width: 1,
         curve: "smooth",
