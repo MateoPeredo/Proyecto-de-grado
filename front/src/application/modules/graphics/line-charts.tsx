@@ -32,75 +32,7 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
       chartSettings.maxData.dataMax ??
       Math.max(...data.map((point) => point.y));
 
-    const options: ApexOptions = {
-      chart: {
-        id: `chart${chartId}`,
-        type: "line",
-        height: 230,
-        toolbar: {
-          autoSelected: "pan",
-          show: true,
-          tools: {
-            download: true,
-          },
-        },
-      },
-      colors: chartSettings.colorChart,
-      stroke: { width: 2, curve: "smooth" },
-      markers: { size: 4 },
-      dataLabels: { enabled: chartSettings.dataLabel },
-      xaxis: {
-        type: "datetime",
-        labels: { format: "dd MMM" },
-        tooltip: { enabled: true },
-      },
-      yaxis: {
-        title: { text: titleY },
-        min: 0,
-        max: maxData,
-      },
-    };
-
-    const seriesLine = [
-      {
-        name: name,
-        data,
-      },
-    ];
-
-    const optionsLine: ApexOptions = {
-      chart: {
-        id: `chart${chartId}-line`,
-        height: 130,
-        type: "area",
-        brush: {
-          target: `chart${chartId}`,
-          enabled: true,
-        },
-        selection: {
-          enabled: true,
-          xaxis: {
-            min: Math.min(...data.map((point) => point.x)),
-            max: Math.max(...data.map((point) => point.x)),
-          },
-        },
-      },
-      colors: chartSettings.colorChart,
-      stroke: { width: 1, curve: "smooth" },
-      xaxis: {
-        type: "datetime",
-        tooltip: { enabled: false },
-      },
-      yaxis: {
-        min: 0,
-        max: chartSettings.maxData.dataMax,
-        tickAmount: 2,
-      },
-    };
-
-    return { options, seriesLine, optionsLine };
-  }, [chartSettings, data, name, titleY, chartId]);
-
+    
   return (
     <div className="w-full">
       <ReactApexChart
