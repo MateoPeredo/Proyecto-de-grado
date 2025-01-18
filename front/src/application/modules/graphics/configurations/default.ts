@@ -8,3 +8,10 @@ export const TYPECHARTLINE = {
   area: "area",
 } as const;
 
+export const DEFAULT_SETTINGS = {
+  colorChart: CHARTCOLORS.default,
+  maxData: { isSelect: false, dataMax: undefined, data: [] },
+  typeLine: TYPECHARTLINE.line,
+  dataLabel: false,
+};
+

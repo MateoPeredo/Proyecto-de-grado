@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import {
   ContextProp,
   ProviderProp,
@@ -8,13 +8,32 @@ import {
   CHARTCOLORS,
   TYPECHARTLINE,
 } from "../../modules/graphics/configurations/default";
+import { localStorageService } from "../services/localStorageService";
+import { UI } from "../constants/CONSTANTS";
 
 export const SettingChartContext = createContext<ContextProp | undefined>(
   undefined
 );
 
 export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
-  const [settings, setSettings] = useState<Record<number, settings>>({});
+  const [settings, setSettings] = useState<Record<number, settings>>(
+    {} as Record<number, settings>
+  );
+
+  useEffect(() => {
+    const loadSettingsFromLocalStorage = () => {
+      const storedSettings = localStorageService.getItem(UI.SETTINGS_CHARTS);
+      if (storedSettings) {
+        setSettings(storedSettings as Record<number, settings>);
+      }
+    };
+
+    loadSettingsFromLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    localStorageService.setItem(UI.SETTINGS_CHARTS, settings);
+  }, [settings]);
 
   const toggleMaxData = (
     chartId: number,
@@ -34,13 +53,15 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
           ? dataMax
           : Math.max(...chartSettings.maxData.data);
 
-      return {
+      const updatedSettings = {
         ...prev,
         [chartId]: {
           ...chartSettings,
           maxData: { ...chartSettings.maxData, isSelect, dataMax: maxValue },
         },
       };
+
+      return updatedSettings;
     });
   };
 
@@ -53,24 +74,30 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
         chartId,
       };
 
-      return {
+      const updatedSettings = {
         ...prev,
         [chartId]: {
           ...chartSettings,
           colorChart: color,
         },
       };
+
+      return updatedSettings;
     });
   };
 
   const setTypeLine = (chartId: number, type: keyof typeof TYPECHARTLINE) => {
-    setSettings((prev) => ({
-      ...prev,
-      [chartId]: {
-        ...prev[chartId],
-        typeLine: type,
-      },
-    }));
+    setSettings((prev) => {
+      const updatedSettings = {
+        ...prev,
+        [chartId]: {
+          ...prev[chartId],
+          typeLine: type,
+        },
+      };
+
+      return updatedSettings;
+    });
   };
 
   const setDataLabel = (chartId: number, isLabel: boolean = false) => {
@@ -82,13 +109,15 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
         chartId,
       };
 
-      return {
+      const updatedSettings = {
         ...prev,
         [chartId]: {
           ...chartSettings,
           dataLabel: !isLabel,
         },
       };
+
+      return updatedSettings;
     });
   };
 

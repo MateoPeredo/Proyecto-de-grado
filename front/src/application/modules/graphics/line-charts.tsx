@@ -1,10 +1,9 @@
-import React, { useMemo, useContext } from "react";
+import React, { useMemo } from "react";
 import ReactApexChart from "react-apexcharts";
-import { Props } from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
+import { useChart } from "../../core/hooks/useChartConfig";
 import { DataPoint } from "../../core/types/chart.settings.type";
 import { CHARTCOLORS } from "./configurations/default";
-import { useChart } from "../../core/hooks/useChartConfig";
-import { ApexOptions } from "apexcharts";
 
 interface ApexChartLineProps {
   chartId: number;
@@ -21,6 +20,7 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
 }) => {
   const { settings } = useChart();
 
+  // Obtén las configuraciones del gráfico actual o usa valores por defecto
   const chartSettings = settings[chartId] || {
     colorChart: CHARTCOLORS.default,
     maxData: { isSelect: false, dataMax: undefined, data: [] },
@@ -31,10 +31,11 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
     const maxData =
       chartSettings.maxData.dataMax ??
       Math.max(...data.map((point) => point.y));
+
     const options: ApexOptions = {
       chart: {
         id: `chart${chartId}`,
-        type: "area",
+        type: "line",
         height: 230,
         toolbar: {
           autoSelected: "pan",
@@ -62,7 +63,7 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
 
     const seriesLine = [
       {
-        name: "MGb",
+        name: name,
         data,
       },
     ];
@@ -70,7 +71,7 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
     const optionsLine: ApexOptions = {
       chart: {
         id: `chart${chartId}-line`,
-        height: 800,
+        height: 130,
         type: "area",
         brush: {
           target: `chart${chartId}`,
@@ -98,7 +99,7 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
     };
 
     return { options, seriesLine, optionsLine };
-  }, [chartSettings, data, titleY, chartId]);
+  }, [chartSettings, data, name, titleY, chartId]);
 
   return (
     <div className="w-full">
@@ -108,6 +109,7 @@ export const ApexChartLine: React.FC<ApexChartLineProps> = ({
         type="line"
         height={230}
       />
+
       <ReactApexChart
         options={state.optionsLine}
         series={state.seriesLine}
