@@ -20,20 +20,7 @@ export const SettingChartProvider: React.FC<ProviderProp> = ({ children }) => {
     {} as Record<number, settings>
   );
 
-  useEffect(() => {
-    const loadSettingsFromLocalStorage = () => {
-      const storedSettings = localStorageService.getItem(UI.SETTINGS_CHARTS);
-      if (storedSettings) {
-        setSettings(storedSettings as Record<number, settings>);
-      }
-    };
-
-    loadSettingsFromLocalStorage();
-  }, []);
-
-  useEffect(() => {
-    localStorageService.setItem(UI.SETTINGS_CHARTS, settings);
-  }, [settings]);
+  
 
   const toggleMaxData = (
     chartId: number,
