@@ -4,10 +4,10 @@ export const ConfigurationDashboard = ({ chartId }: { chartId: number }) => {
   const { settings, setColor, setDataLabel } = useChart();
 
   const handleChangeColor = () => {
-    setColor(chartId, ["#000"]);
+    setColor(chartId, ["green"]);
   };
   const handleChangeLabel = () => {
-    setDataLabel(chartId, settings[chartId]?.dataLabel );
+    setDataLabel(chartId, settings[chartId]?.dataLabel);
   };
   return (
     <section className=" w-full flex flex-col gap-4">
