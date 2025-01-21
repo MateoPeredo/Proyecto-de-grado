@@ -3,6 +3,7 @@ import { privateRouter } from "../../../../application/core/constants/ROUTES";
 import { useMenu } from "../../../../application/core/hooks/useMenu";
 import { CustomLink } from "./customLink";
 import { ICON_LOGOUT } from "../../global/icons";
+import logo from "src/assets/logo.png";
 
 export const SideBar = () => {
   const { isCollapsed } = useMenu();
@@ -12,8 +13,12 @@ export const SideBar = () => {
     <nav
       className={`${
         isCollapsed ? "w-[80px]" : "w-[280px]"
-      }  flex justify-center items-center transition-all duration-300 shadow-md col-start-1 row-start-2`}
+      }  flex flex-col justify-start items-center transition-all duration-300 shadow-md col-start-1 row-start-2 p-4 gap-2`}
     >
+      <div className="w-[220px] flex justify-center items-center">
+        <img src={logo} alt="Logo" />
+        {!isCollapsed && <span className="text-base">Conseso</span>}
+      </div>
       <section className=" flex flex-col gap-2 w-full p-2 justify-center items-center">
         {privateRouter.map((route) => {
           const active = location.pathname === route.path;
