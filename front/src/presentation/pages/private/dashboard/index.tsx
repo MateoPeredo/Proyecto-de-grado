@@ -1,5 +1,6 @@
 // import { ApexChartLine } from "../../../../application/modules/graphics/line-charts";
 import { useDrawer } from "../../../../application/core/hooks/useDrawer";
+import { Wrapper } from "../../../shared/global/wrapper";
 import { ConfigurationDashboard } from "./configuration";
 // import { networkTrafficData } from "../../../../application/modules/graphics/mooks";
 
@@ -11,8 +12,7 @@ export const Dashboard = () => {
     toggle();
   };
   return (
-    <div className=" w-full">
-      <h1>Dashboard</h1>
+    <Wrapper title="Dashborad">
       {/* <ApexChartLine
         chartId={1}
         data={networkTrafficData}
@@ -20,6 +20,6 @@ export const Dashboard = () => {
         titleY="Home"
       /> */}
       <button onClick={handleOpenConfig}>configuraciones</button>
-    </div>
+    </Wrapper>
   );
 };
