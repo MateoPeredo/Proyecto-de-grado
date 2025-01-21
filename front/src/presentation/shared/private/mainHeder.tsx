@@ -1,12 +1,18 @@
 import { useMenu } from "../../../application/core/hooks/useMenu";
-import { ICON_USER } from "../global/icons";
+import {  ICON_SIDEBAR_CLOSE, ICON_SIDEBAR_OPEN, ICON_USER } from "../global/icons";
 export const MainHeader = () => {
-  const { toggleMenu } = useMenu();
+  const { toggleMenu ,isCollapsed} = useMenu();
   return (
-    <header className="bg-white h-16 flex justify-start items-center text-xl p-2 border shadow-md col-span-2 row-start-1">
+    <header className="bg-white h-16 flex justify-between items-center text-xl p-4 border shadow-md col-span-2 row-start-1">
       <button
         onClick={toggleMenu}
-        className="p-2 text-white bg-primary rounded"
+        className="p-2 bg-primary/10 text-primary rounded text-xl"
+      >
+        {isCollapsed? ICON_SIDEBAR_OPEN: ICON_SIDEBAR_CLOSE}
+      </button>
+      <button
+        onClick={toggleMenu}
+        className="p-2 bg-primary/10 text-primary rounded text-xl"
       >
         {ICON_USER}
       </button>

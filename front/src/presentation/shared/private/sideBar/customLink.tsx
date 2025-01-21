@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { routesType } from "../../../../application/core/constants/ROUTES";
 
 export interface routesWithActive extends Omit<routesType, "component"> {
-  active: boolean;
+  active?: boolean;
   isCollapsed: boolean;
+  logout?: boolean;
 }
 
 export const CustomLink: React.FC<routesWithActive> = ({
@@ -12,6 +13,7 @@ export const CustomLink: React.FC<routesWithActive> = ({
   path,
   active,
   isCollapsed,
+  logout,
 }) => (
   <Link
     to={path}
@@ -19,7 +21,7 @@ export const CustomLink: React.FC<routesWithActive> = ({
       active
         ? "bg-primary text-white"
         : "hover:bg-primary/70 hover:text-white text-black"
-    } `}
+    } ${logout && "bg-primary/15 text-primary"}`}
   >
     <p className="text-xl z-10">{icon}</p>
     <span

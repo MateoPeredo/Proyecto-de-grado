@@ -12,7 +12,7 @@ export const SideBar = () => {
     <nav
       className={`${
         isCollapsed ? "w-[80px]" : "w-[220px]"
-      } flex flex-col justify-between items-center transition-all duration-300 shadow-2xl col-start-1 row-start-2 p-1 py-8 gap-2 h-dvh z-50`}
+      } flex flex-col justify-between items-center transition-all duration-300 shadow-2xl col-start-1 row-start-2 p-1 py-8 gap-2 h-dvh z-50 overflow-hidden`}
     >
       <div className="w-[220px] flex justify-center items-center">
         <img src={logo} alt="Logo" />
@@ -35,12 +35,11 @@ export const SideBar = () => {
       </section>
       <section className="p-2 w-full ">
         <CustomLink
-          active={true}
+          logout={true}
           path="/login"
           name="Logout"
           isCollapsed={isCollapsed}
           icon={ICON_LOGOUT}
-          
         />
       </section>
     </nav>
