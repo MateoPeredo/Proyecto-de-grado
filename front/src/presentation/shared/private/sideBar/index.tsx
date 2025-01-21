@@ -4,7 +4,6 @@ import { useMenu } from "../../../../application/core/hooks/useMenu";
 import { CustomLink } from "./customLink";
 import { ICON_LOGOUT } from "../../global/icons";
 import logo from "src/assets/logo.png";
-
 export const SideBar = () => {
   const { isCollapsed } = useMenu();
   const location = useLocation();
@@ -12,14 +11,14 @@ export const SideBar = () => {
   return (
     <nav
       className={`${
-        isCollapsed ? "w-[80px]" : "w-[280px]"
-      }  flex flex-col justify-start items-center transition-all duration-300 shadow-md col-start-1 row-start-2 p-4 gap-2`}
+        isCollapsed ? "w-[80px]" : "w-[220px]"
+      } flex flex-col justify-between items-center transition-all duration-300 shadow-2xl col-start-1 row-start-2 p-1 py-8 gap-2 h-dvh z-50`}
     >
       <div className="w-[220px] flex justify-center items-center">
         <img src={logo} alt="Logo" />
-        {!isCollapsed && <span className="text-base">Conseso</span>}
+        {!isCollapsed && <span className="text-base font-bold ">Conseso</span>}
       </div>
-      <section className=" flex flex-col gap-2 w-full p-2 justify-center items-center">
+      <section className="flex flex-col gap-2 w-full p-2 justify-center items-center ">
         {privateRouter.map((route) => {
           const active = location.pathname === route.path;
           return (
@@ -33,13 +32,15 @@ export const SideBar = () => {
             />
           );
         })}
-
+      </section>
+      <section className="p-2 w-full ">
         <CustomLink
-          active={false}
+          active={true}
           path="/login"
           name="Logout"
           isCollapsed={isCollapsed}
           icon={ICON_LOGOUT}
+          
         />
       </section>
     </nav>
