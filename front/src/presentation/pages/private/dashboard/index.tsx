@@ -1,5 +1,6 @@
 // import { ApexChartLine } from "../../../../application/modules/graphics/line-charts";
 import { useDrawer } from "../../../../application/core/hooks/useDrawer";
+import { ApexChartLine } from "../../../../application/modules/graphics/line-charts";
 import { Tile } from "../../../shared/global/tiles";
 import { Wrapper } from "../../../shared/global/wrapper";
 import { ConfigurationDashboard } from "./configuration";
@@ -32,12 +33,7 @@ export const Dashboard = () => {
           />
         ))}
       </div>
-      {/* <ApexChartLine
-        chartId={1}
-        data={networkTrafficData}
-        name="GB"
-        titleY="Home"
-      /> */}
+      <ApexChartLine />
       <button onClick={handleOpenConfig}>configuraciones</button>
     </Wrapper>
   );
