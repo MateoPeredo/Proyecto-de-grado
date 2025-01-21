@@ -13,9 +13,9 @@ export const PrivateLayaut = () => {
         <SettingChartProvider>
           <DrawerProvider>
             <Drawer />
-            <MainHeader />
             <SideBar />
-            <main className={`col-start-2 row-start-2 p-4 overflow-y-auto`}>
+            <main className={`col-start-2 row-start-2 overflow-y-auto`}>
+              <MainHeader />
               <Outlet />
             </main>
           </DrawerProvider>
