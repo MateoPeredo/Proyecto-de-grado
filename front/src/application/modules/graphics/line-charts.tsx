@@ -1,53 +1,53 @@
-import React, { useMemo } from "react";
-import ReactApexChart from "react-apexcharts";
-import { ApexOptions } from "apexcharts";
-import { useChart } from "../../core/hooks/useChartConfig";
-import { DataPoint } from "../../core/types/chart.settings.type";
-import { CHARTCOLORS } from "./configurations/default";
+// import React, { useMemo } from "react";
+// import ReactApexChart from "react-apexcharts";
 
-interface ApexChartLineProps {
-  chartId: number;
-  data: DataPoint[];
-  name: string;
-  titleY: string;
-}
+// import { useChart } from "../../core/hooks/useChartConfig";
+// import { DataPoint } from "../../core/types/chart.settings.type";
+// import { CHARTCOLORS } from "./configurations/default";
 
-export const ApexChartLine: React.FC<ApexChartLineProps> = ({
-  chartId,
-  data,
-  name,
-  titleY,
-}) => {
-  const { settings } = useChart();
+// interface ApexChartLineProps {
+//   chartId: number;
+//   data: DataPoint[];
+//   name: string;
+//   titleY: string;
+// }
 
-  // Obtén las configuraciones del gráfico actual o usa valores por defecto
-  const chartSettings = settings[chartId] || {
-    colorChart: CHARTCOLORS.default,
-    maxData: { isSelect: false, dataMax: undefined, data: [] },
-    dataLabel: false,
-  };
+// export const ApexChartLine: React.FC<ApexChartLineProps> = ({
+//   chartId,
+//   data,
+//   name,
+//   titleY,
+// }) => {
+//   const { settings } = useChart();
 
-  const state = useMemo(() => {
-    const maxData =
-      chartSettings.maxData.dataMax ??
-      Math.max(...data.map((point) => point.y));
+//   // Obtén las configuraciones del gráfico actual o usa valores por defecto
+//   const chartSettings = settings[chartId] || {
+//     colorChart: CHARTCOLORS.default,
+//     maxData: { isSelect: false, dataMax: undefined, data: [] },
+//     dataLabel: false,
+//   };
+
+//   const state = useMemo(() => {
+//     const maxData =
+//       chartSettings.maxData.dataMax ??
+//       Math.max(...data.map((point) => point.y));
 
     
-  return (
-    <div className="w-full">
-      <ReactApexChart
-        options={state.options}
-        series={state.seriesLine}
-        type="line"
-        height={230}
-      />
+//   return (
+//     <div className="w-full">
+//       <ReactApexChart
+//         options={state.options}
+//         series={state.seriesLine}
+//         type="line"
+//         height={230}
+//       />
 
-      <ReactApexChart
-        options={state.optionsLine}
-        series={state.seriesLine}
-        type="area"
-        height={130}
-      />
-    </div>
-  );
-};
+//       <ReactApexChart
+//         options={state.optionsLine}
+//         series={state.seriesLine}
+//         type="area"
+//         height={130}
+//       />
+//     </div>
+//   );
+// };

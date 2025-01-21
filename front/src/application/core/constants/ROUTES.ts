@@ -30,12 +30,6 @@ export const privateRouter: routesType[] = [
     icon: ICON_DASHBOARD,
   },
   {
-    path: "/graphics",
-    name: "Graficos",
-    component: Graphics,
-    icon: ICON_CHART,
-  },
-  {
     path: "/ids",
     name: "IDs",
     component: Ids,
