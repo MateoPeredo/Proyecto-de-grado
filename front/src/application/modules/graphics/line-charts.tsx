@@ -12,7 +12,10 @@ export const dates = [
   { x: new Date("2023-07-01").getTime(), y: 70 },
   { x: new Date("2023-08-01").getTime(), y: 91 },
 ];
-export const ApexChartLine = () => {
+interface PropChart {
+  className?: string;
+}
+export const ApexChartLine: React.FC<PropChart> = ({ className }) => {
   const [state, setState] = React.useState<{
     series: { name: string; data: { x: number; y: number }[] }[];
     options: ApexOptions;
@@ -30,7 +33,7 @@ export const ApexChartLine = () => {
         height: 350,
         zoom: {
           type: "x",
-          enabled: true,
+          enabled: false,
           autoScaleYaxis: true,
         },
         toolbar: {
@@ -83,7 +86,7 @@ export const ApexChartLine = () => {
     },
   });
   return (
-    <section className="w-full p-2 border shadow-md">
+    <section className={`w-full p-2 border shadow-md ${className}`}>
       <ReactApexChart
         options={state.options}
         series={state.series}
