@@ -16,13 +16,17 @@ export const Table = <T extends object>({ data, columns }: PropsTable<T>) => {
   });
 
   return (
-    <section className=" w-full h-full rounded-md overflow-hidden ">
+    <section className=" w-full h-full rounded-md overflow-hidden border shadow-md p-4">
+      <h5>Name Table</h5>
+      <div className="">
+        <input type="search" className="border rounded-md" />
+      </div>
       <table className="border w-full h-full ">
-        <thead className="bg-primary text-white font-light text-sm ">
+        <thead className=" font-light  bg-primary/20 text-primary ">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="py-2 text-center">
+                <th key={header.id} className="py-4 text-center text-xs">
                   {header.isPlaceholder
                     ? null
                     : typeof header.column.columnDef.header === "function"

@@ -40,7 +40,7 @@ export const ApexChartLine: React.FC<PropChart> = ({ className }) => {
           autoSelected: "zoom",
         },
       },
-      colors: ["#E30613"],
+      colors: ["#606DBF"],
       dataLabels: {
         enabled: false,
       },
@@ -53,7 +53,7 @@ export const ApexChartLine: React.FC<PropChart> = ({ className }) => {
       },
       fill: {
         type: "gradient",
-        colors: ["red"],
+        colors: ["#606DBF"],
         gradient: {
           shadeIntensity: 1,
           inverseColors: false,

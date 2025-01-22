@@ -1,9 +1,10 @@
+import { Wrapper } from "../../../shared/global/wrapper";
 import { SectionTable } from "../dashboard/sections/table.sections";
 
 export const Ids = () => {
   return (
-    <div>
+    <Wrapper title="IDS">
       <SectionTable />
-    </div>
+    </Wrapper>
   );
 };
