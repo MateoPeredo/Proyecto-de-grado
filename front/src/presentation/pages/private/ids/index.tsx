@@ -1,3 +1,9 @@
+import { SectionTable } from "../dashboard/sections/table.sections";
+
 export const Ids = () => {
-  return <div>Ids</div>;
+  return (
+    <div>
+      <SectionTable />
+    </div>
+  );
 };

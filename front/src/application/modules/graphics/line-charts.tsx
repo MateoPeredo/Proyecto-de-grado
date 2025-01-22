@@ -86,7 +86,7 @@ export const ApexChartLine: React.FC<PropChart> = ({ className }) => {
     },
   });
   return (
-    <section className={`w-full p-2 border shadow-md ${className}`}>
+    <section className={`w-full p-2 border shadow-md rounded-md  ${className}`}>
       <ReactApexChart
         options={state.options}
         series={state.series}
