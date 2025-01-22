@@ -1,4 +1,8 @@
-import { useReactTable, ColumnDef } from "@tanstack/react-table";
+import {
+  useReactTable,
+  ColumnDef,
+  getCoreRowModel,
+} from "@tanstack/react-table";
 
 const data = [
   { id: 1, name: "Juan", age: 25 },
@@ -23,22 +27,10 @@ export const Table = () => {
     <table>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <th key={header.id}>{header.column.columnDef.header}</th>
-            ))}
-          </tr>
+          <tr key={headerGroup.id}></tr>
         ))}
       </thead>
-      <tbody>
-        {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <td key={cell.id}>{cell.renderValue()}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+      <tbody></tbody>
     </table>
   );
 };
