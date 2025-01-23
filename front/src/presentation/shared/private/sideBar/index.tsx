@@ -12,7 +12,7 @@ export const SideBar = () => {
     <nav
       className={`${
         isCollapsed ? "w-[80px]" : "w-[220px]"
-      } flex flex-col justify-between items-center transition-all duration-300 shadow-2xl col-start-1 row-start-2 p-1 py-8 gap-2 h-dvh z-50 overflow-hidden`}
+      } flex flex-col justify-between items-center transition-all duration-300 shadow-2xl col-start-1 row-start-2 p-1 py-8 gap-2 h-dvh z-50 overflow-hidden bg-[#EBECF4]`}
     >
       <div className="w-[220px] flex justify-center items-center">
         <img src={logo} alt="Logo" />

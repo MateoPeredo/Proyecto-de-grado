@@ -10,18 +10,18 @@ export const Tile: React.FC<PropTile> = ({ digit, increase, name, id }) => {
     <article
       className={`${
         id === 1 ? "bg-primary text-white" : "bg-primary/15"
-      } p-4 rounded-md shadow-md`}
+      } p-4 rounded-md shadow-md min-h-32 flex flex-col justify-between hover:shadow-2xl`}
     >
       <header>
-        <h2 className={`text-sm font-medium ${id != 1 && "text-black/50"}`}>{name}</h2>
+        <h2 className={`text-md font-bold  ${id != 1 && "text-black "}`}>
+          {name}
+        </h2>
       </header>
-      <section className="">
-        <h3 className="text-2xl font-bold">{digit}</h3>
-        <div className="flex justify-between items-center">
-          <small className="text-xs">vs. anterior mes</small>
-          <p className="font-bold">{increase}%</p>
-        </div>
-      </section>
+      <h3 className="text-3xl font-bold">{digit}</h3>
+      <div className="flex justify-between items-center text-xs">
+        <p>vs. anterior mes</p>
+        <p>{increase}%</p>
+      </div>
     </article>
   );
 };
