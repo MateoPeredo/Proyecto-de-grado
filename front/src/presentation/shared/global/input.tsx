@@ -2,16 +2,19 @@ export interface propsInput
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  propClasname?: string;
 }
-export const Input: React.FC<propsInput> = ({ label, error, ...props }) => {
+export const Input: React.FC<propsInput> = ({ label, error,propClasname, ...props }) => {
   return (
     <div className="flex flex-col gap-1 w-full text-gray-800">
       {label && <label className="text-sm">{label}</label>}
       <input
         {...props}
         className={`rounded-md p-2 bg-transparent border border-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${
-          error && "border-red-700"
-        }`}
+          error && "border-red-700" 
+        }
+        ${propClasname}  
+        `}
         placeholder={label}
       />
       {error && <span className="text-red-700 text-sm">{error}</span>}
