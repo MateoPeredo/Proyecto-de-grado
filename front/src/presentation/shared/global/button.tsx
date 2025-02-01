@@ -18,6 +18,7 @@ export const PrymaryButton: React.FC<ButtonProps> = ({
     </button>
   );
 };
+los dos hacemos la misma interacción hagamos clases condicionales 
 
 export const FilterButton: React.FC<ButtonProps> = ({
   children,
