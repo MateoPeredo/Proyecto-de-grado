@@ -7,6 +7,7 @@ import { DrawerProvider } from "../../application/core/context/drawer.context";
 import { SettingChartProvider } from "../../application/core/context/setting.chart.context";
 
 export const PrivateLayaut = () => {
+// manejo de wrppers
   return (
     <div className="w-[100dvw] h-[100dvh] grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] overflow-hidden">
       <MenuProvider>
