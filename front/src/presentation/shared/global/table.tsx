@@ -12,7 +12,7 @@ interface PropsTable<T> {
   data: T[];
   columns: ColumnDef<T, any>[];
 }
-
+debemos manejar mejor las funcionalidades 
 export const Table = <T extends object>({ data, columns }: PropsTable<T>) => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [filterBy, setFilterBy] = useState<string | null>(null);
